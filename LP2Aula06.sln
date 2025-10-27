@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GunDecorations", "GunDecora
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BearAdapter", "BearAdapter\BearAdapter.csproj", "{4D1924AF-A59D-44DF-B1C8-0DE60A125533}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Descompressor", "Descompressor\Descompressor.csproj", "{8876B176-8D1C-45D3-80D3-AB08462424A4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{4D1924AF-A59D-44DF-B1C8-0DE60A125533}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D1924AF-A59D-44DF-B1C8-0DE60A125533}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D1924AF-A59D-44DF-B1C8-0DE60A125533}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8876B176-8D1C-45D3-80D3-AB08462424A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8876B176-8D1C-45D3-80D3-AB08462424A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8876B176-8D1C-45D3-80D3-AB08462424A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8876B176-8D1C-45D3-80D3-AB08462424A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
