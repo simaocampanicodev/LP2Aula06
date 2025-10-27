@@ -1,4 +1,5 @@
 ﻿using System;
+using GunDecorations.bin;
 
 namespace GunDecorations
 {
@@ -6,7 +7,10 @@ namespace GunDecorations
     {
         private static void Main(string[] args)
         {
-            Console.WriteLine("Hello LP1!");
+            Gun gun = new MachineGun();
+            gun = new GunClip(new GunSilencer(gun));
+
+            gun.Fire();
         }
     }
 }
