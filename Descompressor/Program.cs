@@ -73,37 +73,31 @@ namespace Descompressor
         // Comprimir um texto para dentro de um ficheiro
         private void Comprime()
         {
-
             // Linhas de texto inseridas pelo utilizador
             string line;
 
-            // Criar um ficheiro em modo escrita
-            FileStream fs = new FileStream(
-                ficheiro, FileMode.Create, FileAccess.Write);
-            // Decorar o ficheiro com um compressor para o formato GZip
-            GZipStream gzs = new GZipStream(fs, CompressionLevel.Optimal);
-            // Adaptar o compressor para escrita em modo de texto
-            StreamWriter sw = new StreamWriter(gzs);
-
-            // Pedir ao utilizador para inserir várias linhas de texto que
-            // serão guardadas no ficheiro comprimido
-            Console.WriteLine("Insere várias linhas de texto "
-                + "(linha vazia termina inserção):");
-
-            while ((line = Console.ReadLine()).Length > 0)
+            // Usar blocos using para garantir o fecho automático dos streams
+            using (FileStream fs = new FileStream(
+                ficheiro, FileMode.Create, FileAccess.Write))
+            using (GZipStream gzs = new GZipStream(fs, CompressionLevel.Optimal))
+            using (StreamWriter sw = new StreamWriter(gzs))
             {
-                sw.WriteLine(line);
-            }
+                // Pedir ao utilizador para inserir várias linhas de texto que
+                // serão guardadas no ficheiro comprimido
+                Console.WriteLine("Insere várias linhas de texto "
+                    + "(linha vazia termina inserção):");
 
-            // Fechar ficheiro
-            sw.Close();
+                while ((line = Console.ReadLine()).Length > 0)
+                {
+                    sw.WriteLine(line);
+                }
+            } // Os streams são fechados automaticamente aqui
         }
 
         // Descomprimir texto no ficheiro e mostrar no ecrã
         private void Descomprime()
         {
             string line;
-
 
             // Verificar se o ficheiro existe
             if (!File.Exists(ficheiro))
@@ -112,24 +106,22 @@ namespace Descompressor
                     $"O ficheiro '{ficheiro}' não existe. Comprima dados primeiro.");
             }
 
-            FileStream fs = new FileStream(
-                ficheiro, FileMode.Open, FileAccess.Read);
-
-            GZipStream gzs = new GZipStream(fs, CompressionMode.Decompress);
-
-            StreamReader sr = new StreamReader(gzs);
-
-            Console.WriteLine("Conteúdo do ficheiro descomprimido:");
-            Console.WriteLine("--------------------------------");
-
-            while ((line = sr.ReadLine()) != null)
+            // Usar blocos using para garantir o fecho automático dos streams
+            using (FileStream fs = new FileStream(
+                ficheiro, FileMode.Open, FileAccess.Read))
+            using (GZipStream gzs = new GZipStream(fs, CompressionMode.Decompress))
+            using (StreamReader sr = new StreamReader(gzs))
             {
-                Console.WriteLine(line);
-            }
+                Console.WriteLine("Conteúdo do ficheiro descomprimido:");
+                Console.WriteLine("--------------------------------");
 
-            Console.WriteLine("--------------------------------");
+                while ((line = sr.ReadLine()) != null)
+                {
+                    Console.WriteLine(line);
+                }
 
-            sr.Close();
+                Console.WriteLine("--------------------------------");
+            } // Os streams são fechados automaticamente aqui
         }
     }
 }
